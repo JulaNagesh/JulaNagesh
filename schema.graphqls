@@ -1,0 +1,53 @@
+#Custom Module
+type Query
+{
+    CustomGraphql (
+        username: String @doc(description: "Email Address/Mobile Number")
+        password: String @doc(description: "Password")
+        # address: String @doc(description: "address")
+        # phonenumber: String @doc(description: "phonenumber")
+        # status: String @doc(description: "status")
+        fieldtype: String @doc(description: "Field Type")
+        websiteId: Int = 1 @doc (description: "Website Id")
+    ): CustomGraphqlOutput @resolver(class: "Firstpage\\Secpage\\Model\\Resolver\\CustomGraphql") @doc(description:"Custom Module Datapassing")
+
+ CustomerGraphql (
+        mobilename: String @doc(description: "Mobile Number")
+        id: Int @doc(description: "id")
+        status: String @doc(description: "status")
+        websiteId: Int = 1 @doc (description: "Website Id")
+    ): CustomerGraphqlOutput @resolver(class: "Firstpage\\Secpage\\Model\\Resolver\\CustomerGraphql") @doc(description:"Custom Module Datapassing")
+
+ProductsGraphql (
+     post_id: String
+        ):getProductsGraphqlOutput @resolver(class: "Firstpage\\Secpage\\Model\\Resolver\\ProductsGraphql") @doc(description: "ProductsGraphql Datapassing")
+
+
+
+}
+type CustomGraphqlOutput
+{
+    username: String
+    password: String   
+    # address:String
+    # phonenumber:String
+    # status:String 
+    fieldtype: String
+}
+type CustomerGraphqlOutput
+{
+    mobilename: String
+    id: Int   
+    status: String
+}
+type getProductsGraphqlOutput
+{
+    post_id: String
+    name: String
+    post_content: String
+    tags: Float
+    status: Int
+    featured_image: String
+    created_at: String
+    updated_at: String
+}

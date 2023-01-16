@@ -1,0 +1,828 @@
+#Mobilelogin Module
+type Mutation {
+    updateColorOptions (
+        Colors:[ColorsInput] @doc(description: "Color attribute options")
+    ): updateColorOptionsOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\UpdateColorOptions") @doc(description:"Update color options")
+    updateSizeOptions (
+        Sizes:[SizesInput] @doc(description: "Size attribute options")
+    ): updateSizeOptionsOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\UpdateSizeOptions") @doc(description:"Update size options")
+    updateBrandOptions (
+        Brands:[BrandsInput] @doc(description: "Brand attribute options")
+    ): updateBrandOptionsOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\UpdateBrandOptions") @doc(description:"Update brand options")
+    updateInventoryItems (
+        InventoryItems:[InventoryInput] @doc(description: "Inventory attribute update")
+    ): updateInventoryItemsOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\UpdateInventoryItems") @doc(description:"Update Inventory options")
+    createStore (
+        Stores:[StoresInput] @doc(description: "Store creation or update")
+    ): createStoreOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\CreateStore") @doc(description:"Create store")
+    createVendor (
+        Vendors:[VendorsInput] @doc(description: "Vendor creation or update")
+    ): createVendorOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\CreateVendor") @doc(description:"Create vendor")
+    inventoryMapping (
+        InventoryItems:[InventoryMappingInput] @doc(description: "Inventory mapping")
+    ): inventoryMappingOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\InventoryMapping") @doc(description:"Inventory mapping")
+    articleMapping (
+        ArticleHierarchy:[ArticleHierarchyInput] @doc(description: "Article mapping")
+    ): articleMappingOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\ArticleMapping") @doc(description:"Article mapping")
+    priceMapping (
+        PriceDetails:[PriceMappingInput] @doc(description: "Price mapping")
+    ): priceMappingOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\PriceMapping") @doc(description:"Price mapping")
+
+    addingSsbProduct (
+         Products:[ProductsData] @doc(description: "Adding Product")
+    ): addingProductOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\AddingSsbProduct") @doc(description:"Add Product")
+    askQuestion (
+          AskQuestion:[Question]
+    ): askQuestionOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\AskQuestion")
+    answer (
+          Answer:[Answer]
+    ): answerOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Answer")
+    addProduct (
+       status: Int
+       type_id: String
+       website_id: Int
+       attribute_id: Int
+       product_name: String
+       sku: String
+       brand: Int
+       categoryId: String
+       visibility: Int
+       price: Float
+       name_of_range: String
+       sub_category_code: String
+       product_type: Int
+       iic_mastersku: String
+       old_sku_code: String
+       ean_code: Int
+       variant_type: Int
+       variant_grouping: String
+       variant_value: String
+       size: Int
+       pack_of: Int
+       unit_size: String
+       size_uom: Int
+       dimensions: String
+       dimensions_uom: Int
+       weight: String
+       weight_uom: Int
+       ingredients: String
+       ingredient_preferences: Int
+       how_to_use: String
+       disclaimers_cautions: String
+       gender: Int
+       formulation: Int
+       fragrance_family: Int
+       occasion: String
+       age_group: Int
+       tax: Int
+       location: Int
+       country_of_manufacturer: String
+       address_of_manufacturer: String
+       name_of_manufacturer: String
+       supplier_s_address: String
+       supplier_s_name: String
+       return_period: String
+       short_description: String
+       image: String
+       qty: Int
+       stock: Int
+       l3_code: String
+       hair_type: Int
+       recommended_for_concerns: Int
+       finish: Int
+       coverage: Int
+       shade: String
+       color_family: Int
+       what_it_does_benefits: Int
+       skin_tone: Int
+       spf: String
+       shelf_life: String
+       feature_benefits: String
+       supplement_benefits: Int
+       news_from_date: String
+       news_to_date: String
+       top_notes: String
+       heart_notes: String
+       base_notes: String
+       skin_type: Int
+       url_key: String
+       meta_tile: String
+       meta_description: String
+       meta_keyword: String
+       is_cod: Int
+    ): productOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\AddingProduct")
+   assingSimpleToConfigurableProduct (
+      product_id: Int
+      super_attribute_id: String
+      associated_prod_id: String
+      attribute_id: Int
+    ): configproductOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\AddConfigProduct")
+    applyWalletAmount (
+        cart_id: String @doc(description: "Customer Cart Id")
+        redemption_amount: Float @doc(description: "Redemption amount")
+        wallet_pin:String @doc(description:"User otp")
+        access_token:String
+    ): Cart @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\GiftCartRedemption") @doc(description:"Return information about the specified shopping cart.") @cache(cacheable: false)
+     customerreview (
+        review_rating: Int @doc(description: "Customer review rating")
+        review_title: String @doc(description: "Customer review title")
+        review_description: String @doc(description: "Customer review description")
+        nickname: String @doc(description: "Customer nickname")
+        images: [String] @doc(description: "Review Images")
+        sku: String @doc(description: "Product Id")
+    ): customerReviewOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\AddReview") @doc(description:"Customer review details.")
+    addlikes (
+        sku: String @doc(description: "Product SKU")
+    ): addlikesOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\AddLikes") @doc(description:"Product Likes.")
+    emailSubscription (
+        email: String @doc(description: "Customer email")
+        is_subscribe:String
+    ): emailSubscriptionOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\EmailSubscription") @doc(description:"Email Subscription.")
+    addreviewlikes (
+        review_id: Int @doc(description: "Review Id")
+    ): addreviewlikesOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\AddReviewLikes") @doc(description:"Product Likes.")
+    addquestionlikes (
+        question_id: Int @doc(description: "Review Id")
+    ): addquestionlikesOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\AddQuestionLikes") @doc(description:"Question Likes.")
+     createCustomerAccount (
+        firstname: String
+        lastname: String
+        mobileNumber: String @doc(description: "Mobile Number")
+        email: String
+        gender: String
+        dob: String
+        anniversary:String
+        pincode:String
+        state:String
+        city:String
+        street: String
+    ): MobileCreateCustomerAccountOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\CreateCustomerAccount") @doc(description:"Create an Account")
+    createBuyNowCart(
+        cartItems: [CartItemInput!]! @doc(description: "An array that defines the products to add to the cart.")
+    ): cartIdOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\BuyNowCart") @doc(description:"Return Buy Now cart id.")
+    mergeActiveCarts(
+        source_cart_id:String
+        destination_cart_id:String
+    ): cartIdOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\MergeCarts") @doc(description:"Return Buy Now cart id.")
+    updateOrderStatus (
+        order_number: String @doc(description: "Order Number")
+        status: String  @doc(description: "Status")
+        state: String  @doc(description: "Status")
+        quantity: Int
+        cancellation_reason: String @doc(description: "Cancellation Reason")
+        order_item_id: Int
+    ): updateOrderStatusOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\UpdateOrderStatus")
+    addProductImages (
+        sku: String @doc(description: "Product SKU")
+        images: [Images]  @doc(description: "Product images")
+        video_url: String  @doc(description: "Status")
+         video_description: String  @doc(description: "Status")
+          video_title: String  @doc(description: "Status")
+    ): addProductImagesOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\AddProductImages")
+    addImages (
+        sku: String @doc(description: "Product SKU")
+        images: String @doc(description: "Product images")
+    ): addImagesOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\AddImages")
+    otpForWallet (
+        cart_id: String @doc(description: "Cart Id")
+        access_token:String
+    ): otpForWalletOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\OtpForWallet")
+    confirmPlaceOrder(input: PlaceOrderInput @doc(description: "An input object that defines the shopper's cart ID.")): PlaceOrderOutput @resolver(class: "\\Techouts\\MageCustom\\Model\\Resolver\\PlaceOrder") @doc(description:"Convert the quote into an order.")
+    stockNotification (
+        sku: String @doc(description: "Product SKU")
+        mail: String @doc(description: "Mail Id")
+    ): stockNotificationOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\StockNotifications")
+    otpForLoyalty (
+        cart_id: String @doc(description: "Customer Cart Id")
+        access_token: String
+    ): otpForLoyaltyOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\OtpForLoyalty") @doc(description:"Return otp to apply loyalty.")
+    applyLoyaltyAmount (
+        cart_id: String @doc(description: "Customer Cart Id")
+        loyalty_point: Float @doc(description: "Loyalty point")
+        otp:String @doc(description:"User otp")
+        access_token:String
+    ): Cart @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\LoyaltyRedemption") @doc(description:"Return information about the specified shopping cart.") @cache(cacheable: false)
+    applyEgvAmount (
+        cart_id: String @doc(description: "Customer Cart Id")
+        amount: Float @doc(description: "Amount")
+        card_number: String @doc(description: "Gift card number")
+        card_pin: String @doc(description: "Gift card pin")
+        access_token:String
+    ): Cart @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\EgvRedemption") @doc(description:"Return information about the specified shopping cart.") @cache(cacheable: false)
+    sendOrderNotification (
+        order_id: String @doc(description: "Order number")
+    ): orderNotificationOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\SendOrderNotification") @doc(description:"Return status of notification.") @cache(cacheable: false)
+}
+type cartIdOutput {
+    cart_id: String
+}
+type Order @doc(description: "Contains the order ID.") {
+    order_number: String! @doc(description: "The unique ID for an Order object.")
+    order_id: String @deprecated(reason: "Use order_number instead.")
+    status: Boolean
+    message: String
+}
+
+type ConfigurableProductOptionsValues {
+    swatch_data: SwatchDataInterface @doc(description: "Swatch data for a configurable product option.") @resolver(class: "\\Techouts\\MageCustom\\Model\\Resolver\\Product\\Options\\SwatchData")
+}
+type Query {
+    cart(cart_id: String! @doc(description: "The unique ID of the cart to query.")): Cart @resolver (class: "\\Techouts\\MageCustom\\Model\\Resolver\\Cart") @doc(description:"Return information about the specified shopping cart.") @cache(cacheable: false)
+    question (
+        entity_id: Int
+        pageSize: Int = 10 @doc(description: "The maximum number of results to return at once. The default value is 20."),
+        currentPage: Int = 1 @doc(description: "The page of results to return. The default value is 1."),
+    ): GetQuestion @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\GetQuestion")
+    GetCustomerToken (
+            input: String
+        ): GetCustomerTokenOutput @resolver(class:"Techouts\\MageCustom\\Model\\Resolver\\GetCustomerToken")
+    GetDeliveryRating: GetDeliveryRatingOutput @resolver(class:"Techouts\\MageCustom\\Model\\Resolver\\GetDeliveryRatings")
+    getCouponCodes: [GetCouponCodeOutput] @resolver(class:"Techouts\\MageCustom\\Model\\Resolver\\GetCouponCode")
+    removeWalletAmount (
+            cart_id: String @doc(description: "Customer Cart Id")
+        ): Cart @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\GiftCartRemove") @doc(description:"Return information about the specified shopping cart.") @cache(cacheable: false)
+    processImageEnrichment (
+        filter: EnrichmentFilter
+        ): EnrichmentOutput @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\ProcessImageEnrichment")
+    removeLoyaltyAmount (
+        cart_id: String @doc(description: "Customer Cart Id")
+    ): Cart @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\LoyaltyRemove") @doc(description:"Return information about the specified shopping cart.") @cache(cacheable: false)
+    removeEgvAmount (
+        cart_id: String @doc(description: "Customer Cart Id")
+    ): Cart @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\EgvRemove") @doc(description:"Return information about the specified shopping cart.") @cache(cacheable: false)
+    getTheApp (
+        mobile_number: String
+    ): downloadApp @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\GetTheApp")
+}
+input EnrichmentFilter {
+    category_id: String @doc(description: "Category Id ")
+    pageSize: Int = 20 @doc(description: "The maximum number of results to return at once. The default is 20."),
+    currentPage: Int = 1 @doc(description: "The page of results to return. The default is 1."),
+}
+type EnrichmentOutput {
+    items:[EnrichmentProduct]
+    total_count:Int
+}
+type EnrichmentProduct {
+    sku:String
+    parent_sku:String
+}
+type GetDeliveryRatingOutput {
+    rating1:String
+    rating2:String
+    rating3:String
+    rating4:String
+    rating5:String
+}
+input Images {
+    thumbnail_image:String
+    swatch_image:String
+    small_image:String
+    base_image:String
+}
+interface ProductInterface {
+    cod_available: Int @doc(description: "Cod Available for the product")
+    rating_summary: String! @doc(description: "The average of all the ratings given to the product.") @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\AverageRating")
+    review_stars:String! @doc(description: "Rating percentage based on total count") @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\ReviewStars")
+    review_count: Int! @doc(description: "The total count of all the reviews given to the product.") @resolver(class: "Magento\\ReviewGraphQl\\Model\\Resolver\\Product\\ReviewCount")
+    reviews(
+        pageSize: Int = 20 @doc(description: "The maximum number of results to return at once. The default is 20."),
+        currentPage: Int = 1 @doc(description: "The page of results to return. The default is 1."),
+    ): ProductReviews! @doc(description: "The list of products reviews.") @resolver(class: "Magento\\ReviewGraphQl\\Model\\Resolver\\Product\\Reviews")
+    how_to_use: String
+    ingredients: String
+    about_the_product: String
+    product_highlighter:String @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\ProductHighlighterValues")
+    small_image:Small
+    thumbnail:Thumbnail
+    image:Image
+    additional_images: [AdditionalImages] @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\MediaGallery\\Url")
+    swatch_image:String @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\SwatchImage")
+}
+input ProductAttributeFilterInput @doc(description: "Defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for.") {
+    category_id: FilterEqualTypeInput @deprecated(reason: "Use `category_uid` instead.") @doc(description: "Deprecated: use `category_uid` to filter product by category ID.")
+    category_uid: FilterEqualTypeInput @doc(description: "Filter product by the unique ID for a `CategoryInterface` object.")
+}
+type ProductReviews @doc(description: "Contains an array of product reviews.") {
+    items: [ProductReview]! @doc(description: "An array of product reviews.")
+    page_info: SearchResultPageInfo! @doc(description: "Metadata for pagination rendering.")
+}
+input PlaceOrderInput @doc(description: "Specifies the quote to be converted to an order.") {
+    cart_id: String! @doc(description: "The unique ID of a `Cart` object.")
+    access_token:String
+}
+type Small {
+    url:String @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\SmallImage")
+}
+type Thumbnail {
+    url:String @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\Thumbnail")
+}
+type Image {
+    url:String @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\Image")
+}
+type AdditionalImages @doc(description: "Contains basic information about a product image or video.") @typeResolver(class: "Magento\\CatalogGraphQl\\Model\\MediaGalleryTypeResolver") {
+    url: String @doc(description: "The URL of the product image or video.")
+}
+interface OrderItemInterface @doc(description: "Order item details.") @typeResolver(class: "Magento\\SalesGraphQl\\Model\\TypeResolver\\OrderItem") {
+    id: ID! @doc(description: "The unique ID for an `OrderItemInterface` object.")
+    product_name: String @doc(description: "The name of the base product.")
+    product_sku: String! @doc(description: "The SKU of the base product.")
+    product_url_key: String @doc(description: "URL key of the base product.")
+    product_type: String @doc(description: "The type of product, such as simple, configurable, etc.")
+    status: String @doc(description: "The status of the order item.")
+    product_sale_price: Money! @doc(description: "The sale price of the base product, including selected options.")
+    discounts: [Discount] @doc(description: "The final discount information for the product.")
+    selected_options: [OrderItemOption] @doc(description: "The selected options for the base product, such as color or size.")
+    entered_options: [OrderItemOption] @doc(description: "The entered option for the base product, such as a logo or image.")
+    quantity_ordered: Float @doc(description: "The number of units ordered for this item.")
+    quantity_shipped: Float @doc(description: "The number of shipped items.")
+    quantity_refunded: Float @doc(description: "The number of refunded items.")
+    quantity_invoiced: Float @doc(description: "The number of invoiced items.")
+    quantity_canceled: Float @doc(description: "The number of canceled items.")
+    quantity_returned: Float @doc(description: "The number of returned items.") @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\ReturnQuantity")
+    quantity_exchanged: Float @doc(description: "The number of exchanged items.") @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\ExchangeQuantity")
+    applied_pmr_promotions: String @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\AppliedPmrPromotions")
+    applied_pmr_promotions_amount: Float @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\AppliedPmrPromotionsAmount")
+    delivery_charges: Float @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\DeliveryCharges")
+    average_rating: Float @doc(description: "Rating summery of the product.") @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\RatingSummary")
+    stock_status: Int @doc(description: "Stock status of the product.") @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\StockStatus")
+    image: String @doc(description: "Base image of the product.") @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\BaseImage")
+    parent_sku: String @doc(description: "Parent SKU of the product.") @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\ParentSku")
+    item_id: Int @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\GetItemId")
+    fulfilment_details: [FulfilmentDetails] @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\DeliveryPartnerDetails")
+    return_details:[ReturnDetails] @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\Returndetails")
+    exchange_details:[ExchangeDetails] @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\Exchangedetails")
+    store_details:[StoreDetails] @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\StoreDetails")
+    cancel_details:[CancelDetails] @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\CancelDetails")
+    estimated_delivery_date:String @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\EstimatedDeliveryDate")
+}
+type FulfilmentDetails {
+    fulfilment_id: Int
+    lSPAlias: String
+    aWBNumber: String
+    fullfillmentRef: String
+    consignmentId: String
+    quantity: Int
+}
+type ReturnDetails {
+    order_number: String
+    sku: String
+    return_fulfilment_ref: String
+    fulfilment_ref: String
+    quantity: Int
+    fulfilment_type: String
+    reason: String
+    state: String
+    send_back_method: String
+    return_initiated_date: String
+    awb_number: String
+    rma_number:String
+    total_refund: Float
+    wallet_refund: Float
+    delivery_charges:Float
+    egv_refund: Float
+    juspay_refund:Float
+    customer_bank_number: String
+
+}
+type ExchangeDetails {
+    order_number: String
+    sku: String
+    return_fulfilment_ref: String
+    fulfilment_ref: String
+    quantity: Int
+    fulfilment_type: String
+    reason: String
+    state: String
+    rma_number:String
+    send_back_method:String
+    return_initiated_date:String
+    awb_number: String
+    exchange_order_number:String
+
+}
+type StoreDetails {
+    source_code:String
+    name:String
+    region:String
+    city:String
+    street:String
+    postcode:String
+    street_number:String
+}
+type CancelDetails {
+    order_number: String
+    cancellation_reason: String
+    cancel_id:Int
+    quantity: Int
+    cancel_initiated_date:String
+    state: String
+    total_refund: Float
+    wallet_refund: Float
+    egv_refund: Float
+    delivery_charges:Float
+    juspay_refund:Float
+}
+type ProductReview @doc(description: "Contains details of a product review.") {
+    product: ProductInterface! @doc(description: "The reviewed product.") @resolver(class: "Magento\\CatalogGraphQl\\Model\\Resolver\\Product")
+    summary: String! @doc(description: "The summary (title) of the review.")
+    review_id: String! @doc(description: "The summary (title) of the review.") @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\ReviewId")
+    text: String! @doc(description: "The review text.")
+    nickname: String! @doc(description: "The customer's nickname. Defaults to the customer name, if logged in.") @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\Product\\Nickname")
+    created_at: String! @doc(description: "The date the review was created.")
+    average_rating: String! @doc(description: "The average of all ratings for this product.") @resolver(class: "Magento\\ReviewGraphQl\\Model\\Resolver\\Product\\Review\\AverageRating")
+    ratings_breakdown: [ProductReviewRating!]! @doc(description: "An array of ratings by rating category, such as quality, price, and value.") @resolver(class: "Magento\\ReviewGraphQl\\Model\\Resolver\\Product\\Review\\RatingBreakdown")
+    review_images:String! @doc(description: "An array of rating images") @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\ReviewImages")
+    review_likes_count:Int! @doc(description: "Review likes count") @resolver(class: "Techouts\\MageCustom\\Model\\Resolver\\ReviewLikes")
+}
+input InventoryInput {
+    RecordUpdateDateTime: String @doc(description: "Record Update Date and Time")
+    ProductCode: String @doc(description: "Product SKU")
+    LocationID: String @doc(description: "Source code")
+    CorrelationID: String @doc(description: "correlationId")
+    StorageLocation: String @doc(description: "Storage Location")
+    TotalAvailable: String @doc(description: "Product quantity")
+    InventoryIndicator: String @doc(description: "Inventory Indicator")
+}
+input ColorsInput {
+    Action: String @doc(description: "M for create/update,D for Delete ")
+    ColorCode: String @doc(description: "ColorCode")
+    ColourDesc: String @doc(description: "ColourDesc")
+    CorrelationID: String @doc(description: "correlationId")
+}
+input SizesInput {
+    Action: String @doc(description: "M for create/update,D for Delete ")
+    SizeCode: String @doc(description: "SizeCode")
+    SizeDesc: String @doc(description: "SizeDesc")
+    CorrelationID: String @doc(description: "correlationId")
+}
+input BrandsInput {
+    Action: String @doc(description: "M for create/update,D for Delete ")
+    BrandCode: String @doc(description: "BrandCode")
+    BrandDesc: String @doc(description: "BrandDesc")
+    RetailFormatId: String @doc(description: "RetailFormatId")
+    CorrelationID: String @doc(description: "correlationId")
+}
+input StoresInput {
+    Action: String @doc(description: "M for create/update,D for Delete ")
+    CorrelationID: String @doc(description: "correlationId")
+    CompanyCode: String @doc(description: "CompanyCode")
+    StoreName: String @doc(description: "StoreName")
+    StoreCode: String @doc(description: "StoreCode")
+    Type: String @doc(description: "Type")
+    GtinNumber: String @doc(description: "GtinNumber")
+    Cin: String @doc(description: "Cin")
+    StoreManagerName: String @doc(description: "StoreManagerName")
+    Address: StoreAddressInput @doc(description: "Store address")
+}
+input StoreAddressInput {
+    StreetName: String @doc(description: "StreetName")
+    StreetNumber: String @doc(description: "StreetNumber")
+    PostalCode: String @doc(description: "PostalCode")
+    Town: String @doc(description: "Town")
+    Phone1: String @doc(description: "Phone1")
+    MobilePhone: String @doc(description: "MobilePhone")
+    Phone2: String @doc(description: "Phone1")
+    Fax: String @doc(description: "Fax")
+    Region: String @doc(description: "Region")
+    RegionCode: String @doc(description: "RegionCode")
+    Latitude: String @doc(description: "Latitude")
+    Longitude: String @doc(description: "Longitude")
+}
+
+input VendorsInput {
+    Action: String @doc(description: "M for create/update,D for Delete ")
+    CorrelationID: Int @doc(description: "correlationId")
+    CompanyCode: String @doc(description: "CompanyCode")
+    VendorName: String @doc(description: "VendorName")
+    VendorCode: String @doc(description: "VendorCode")
+    GtinNumber: String @doc(description: "GtinNumber")
+    ucDropShipVendor:String  @doc(description: "ucDropShipVendor")
+    Address: VendorAddressInput @doc(description: "Store address")
+}
+input VendorAddressInput {
+    AddressID: String @doc(description: "AddressID")
+    StreetName: String @doc(description: "StreetName")
+    StreetNumber: String @doc(description: "StreetNumber")
+    PostalCode: String @doc(description: "PostalCode")
+    Town: String @doc(description: "Town")
+    Phone1: String @doc(description: "Phone1")
+    MobilePhone: String @doc(description: "MobilePhone")
+    Phone2: String @doc(description: "Phone1")
+    Fax: String @doc(description: "Fax")
+    Region: String @doc(description: "Region")
+    RegionCode: String @doc(description: "RegionCode")
+}
+input InventoryMappingInput {
+    ProductCode: String
+    Store: String
+    TotalAvailable: Int
+    DCInventory: Int
+    ECInventory: Int
+    TotalAvailable: String
+    DCInventory: String
+    ECInventory: String
+    StoreECDamage: Int
+    StoreDamage: Int
+}
+input ArticleHierarchyInput {
+    CorrelationID: String
+    Action: String
+    CompanyCode: String
+    Dept: String
+    Sub_Dept: String
+    Class: String
+    Sub_Class: String
+    Desc: String
+}
+input PriceMappingInput {
+    Action: String
+    EventID: String
+    LocationID: String
+    MasterSKU: String
+    SizeSKU: String
+    PriceType: String
+    NotifiedDate: String
+    ValidFromDate: String
+    ValidToDate: String
+    CurrentPrice: String
+    PreviousPrice: String
+    ESBPrecedenceValue:String
+    CorrelationID: String
+}
+input ProductsData {
+    CorrelationID: String
+    action: String
+    code: String
+    styleCode: String
+    styleDesc: String
+    brandCode: String
+    brandDesc: String
+    seasonCode: String
+    primaryVendor: String
+    styleVariants: [StyleVariants]
+    globalAttributes: GlobalAttributes
+    baseArticleCharacteristics:[BaseArticleCharacteristics]
+}
+input BaseArticleCharacteristics {
+    characterisicName: String
+    characterisicDescription: String
+}
+input StyleVariants {
+    action: String
+    baseProduct: String
+    code: String
+    colourCode: String
+    colourDesc: String
+    styleCode: String
+    sizeVariants: [SizeVariants]
+}
+input SizeVariants {
+    action: String
+    baseProduct: String
+    code: String
+    attribute_id: Int
+    sizeCode: String
+    sizeDesc: String
+    HSNCode: String
+    ean: String
+    taxCategoryCode: String
+    vendorPartNumber: String
+    departmentCode: String
+    styleCode: String
+    subDepartmentCode: String
+    classCode: String
+    subClassCode: String
+    productWeight: String
+    productLength: String
+    productHeight: String
+    productWidth: String
+    merchandiseGroup: String
+    buyingUOM: String
+    sellingUnitWeight: String
+    seasonCode: String
+    merchandiseCategory: Int
+    sizeNew: String
+    length: String
+    categoryId: String
+}
+input GlobalAttributes {
+    shortName: String
+    description: String
+    categoryOfSupply: String
+    UQC: String
+    classificationOfGoods: String
+    material: String
+}
+input Question {
+     question: String
+     name: String
+     status: Int
+     entity_id: Int
+}
+input Answer {
+     que_id: Int
+     answer: String
+     name: String
+     status: Int
+}
+type otpForWalletOutput {
+    status:Boolean
+    message:String
+    walletPin:String
+}
+type updateColorOptionsOutput
+{
+    status: Boolean
+    message: String
+}
+type updateBrandOptionsOutput
+{
+    status: Boolean
+    message: String
+}
+type updateSizeOptionsOutput
+{
+    status: Boolean
+    message: String
+}
+type emailSubscriptionOutput
+{
+    status: Boolean
+    message: String
+}
+type createStoreOutput
+{
+    status: Boolean
+    message: String
+}
+type createVendorOutput
+{
+    status: Boolean
+    message: String
+}
+type inventoryMappingOutput
+{
+    status: Boolean
+    message: String
+}
+type updateInventoryItemsOutput
+{
+    status: Boolean
+    message: String
+}
+type articleMappingOutput
+{
+    status: Boolean
+    message: String
+}
+type priceMappingOutput
+{
+    status: Boolean
+    message: String
+}
+type customerReviewOutput
+{
+    status: Boolean
+    message: String
+}
+type productOutput {
+       message: String
+       status: Boolean
+}
+type configproductOutput {
+       message: String
+       status: Boolean
+}
+type addingProductOutput {
+      message: String
+      status: Boolean
+}
+type askQuestionOutput {
+    message: String
+    status: Boolean
+    question: String
+    name: String
+    created_at: String
+}
+type answerOutput {
+     message: String
+     status: Boolean
+     answer: String
+}
+type GetCustomerTokenOutput {
+    token: String
+}
+type GetCouponCodeOutput {
+    coupon_code: String
+    description: String
+    discount_amount: Float
+}
+type Cart @doc(description: "Contains the contents and other details about a guest or customer cart.") {
+    id: ID! @resolver(class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\MaskedCartId") @doc(description: "The unique ID for a `Cart` object.")
+    items: [CartItemInterface] @resolver(class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\CartItems") @doc(description: "An array of products that have been added to the cart.")
+    applied_coupon: AppliedCoupon @resolver(class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\AppliedCoupon") @deprecated(reason: "Use `applied_coupons` instead.")
+    applied_coupons: [AppliedCoupon] @resolver(class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\AppliedCoupons") @doc(description:"An array of `AppliedCoupon` objects. Each object contains the `code` text attribute, which specifies the coupon code.")
+    email: String @resolver (class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\CartEmail") @doc(description: "The email address of the guest or customer.")
+    shipping_addresses: [ShippingCartAddress]! @resolver(class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\ShippingAddresses") @doc(description: "An array of shipping addresses assigned to the cart.")
+    billing_address: BillingCartAddress @resolver(class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\BillingAddress") @doc(description: "The billing address assigned to the cart.")
+    available_payment_methods: [AvailablePaymentMethod] @resolver(class: "Magento\\QuoteGraphQl\\Model\\Resolver\\AvailablePaymentMethods") @doc(description: "An array of available payment methods.")
+    selected_payment_method: SelectedPaymentMethod @resolver(class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\SelectedPaymentMethod") @doc(description: "Indicates which payment method was applied to the cart.")
+    prices: CartPrices @resolver(class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\CartPrices") @doc(description: "Pricing details for the quote.")
+    total_quantity: Float! @resolver(class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\CartTotalQuantity") @doc(description: "The total number of items in the cart.")
+    is_virtual: Boolean! @resolver(class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\CartIsVirtual") @doc(description: "Indicates whether the cart contains only virtual products.")
+    wallet_discount: WalletDiscount @doc(description: "wallet discount redemption.")
+    item_level_promotions: [PromotionOutput] @resolver(class: "\\Techouts\\MageCustom\\Model\\Resolver\\PromotionOutput")  @doc(description: "Item Level Promotion Break ups")
+    free_samples: ProductInterface @resolver(class: "\\Techouts\\MageCustom\\Model\\Resolver\\FreeProductResolver")  @doc(description: "Free sample product")
+    promotion_total: PmrPromotions @resolver(class: "\\Techouts\\MageCustom\\Model\\Resolver\\PmrPromotionsResolver")  @doc(description: "Applied Promotion Total")
+    pmr_promotions: [PmrPromotions] @resolver(class: "\\Techouts\\MageCustom\\Model\\Resolver\\PmrPromotionsResolver") @doc(description: "Applied Promotion Break ups")
+    is_egv_cart: Boolean @resolver(class: "\\Techouts\\MageCustom\\Model\\Resolver\\EgvCart") @doc(description: "Is Egv cart")
+}
+type PromotionOutput {
+    sku:String @doc(description: "Oreder Item SKU")
+    discount: Float @doc(description: "Sum of discount amoount")
+    pmrRules: [PmrPromotions] @doc(description: "Applied Rules")
+}
+type PmrPromotions {
+    code:String @doc(description: "discount code")
+    amount:String @doc(description: "discount amount")
+}
+type WalletDiscount {
+    code:String @doc(description: "discount code")
+    amount:String @doc(description: "discount amount")
+}
+
+type GetQuestion {
+    questions: [QuestionDetails]
+    total_count: Int
+}
+type QuestionDetails {
+    que_id: Int
+    question: String
+    name: String
+    created_at: String
+    likes_count:Int
+    answerDetails: [AnswerDetails]
+}
+type AnswerDetails {
+    answer: String
+    name: String
+    created_at: String
+}
+type addlikesOutput {
+    message: String
+    status: Boolean
+}
+type addreviewlikesOutput {
+    message: String
+    status: Boolean
+}
+type addquestionlikesOutput {
+    message: String
+    status: Boolean
+}
+type MobileCreateCustomerAccountOutput {
+    message: String
+    status: Boolean
+}
+type updateOrderStatusOutput {
+    status: Boolean
+    message: String
+}
+type addProductImagesOutput {
+    status: Boolean
+    message: String
+}
+type stockNotificationOutput {
+    status: Boolean
+    message: String
+}
+type addImagesOutput {
+    status: Boolean
+    message: String
+}
+input CustomerInput @doc(description: "An input object that assigns or updates customer attributes.") {
+    anniversary: String
+}
+type otpForLoyaltyOutput {
+    status:Boolean
+    message:String
+}
+type CartPrices  @doc(description: "Contains details about the final price of items in the cart, including discount and tax information.") {
+    loyalty_discount: LoyaltyDiscount @doc(description:"An array containing loyalty discounts applied to the cart.") @resolver(class: "\\Techouts\\MageCustom\\Model\\Resolver\\LoyaltyDiscounts")
+    egv_discount: EgvDiscount @doc(description:"An array containing EGV discounts applied to the cart.") @resolver(class: "\\Techouts\\MageCustom\\Model\\Resolver\\EgvDiscounts")
+}
+type LoyaltyDiscount {
+    label: String
+    value: Float
+}
+type EgvDiscount {
+    label: String
+    value: Float
+}
+type orderNotificationOutput {
+    status: Boolean
+}
+type downloadApp {
+    message: String
+}
